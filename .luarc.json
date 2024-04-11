@@ -1,5 +1,8 @@
 {
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "enable_git_status",
+        "default_component_configs",
+        "clone"
     ]
 }
