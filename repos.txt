@@ -1,0 +1,11 @@
+tresitter -> https://github.com/nvim-treesitter/nvim-treesitter
+colorscheme -> https://github.com/topics/neovim-colorscheme
+moonfly-colors -> https://github.com/bluz71/vim-moonfly-colors
+nightfly-colors -> https://github.com/bluz71/vim-nightfly-colors
+lazy-vim -> https://github.com/folke/lazy.nvim
+telescope -> https://github.com/nvim-telescope/telescope.nvim
+telescope-ui-select -> https://github.com/nvim-telescope/telescope-ui-select.nvim
+neo-tree -> https://github.com/nvim-neo-tree/neo-tree.nvim
+nvim-lspconfig -> https://github.com/neovim/nvim-lspconfig
+mason.vim -> https://github.com/williamboman/mason.nvim?tab=readme-ov-file#installation
+mason-lspconfig -> https://github.com/williamboman/mason-lspconfig.nvim
