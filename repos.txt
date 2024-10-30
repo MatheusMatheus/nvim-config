@@ -1,3 +1,4 @@
+lazy.nvim -> https://github.com/folke/lazy.nvim
 tresitter -> https://github.com/nvim-treesitter/nvim-treesitter
 colorscheme -> https://github.com/topics/neovim-colorscheme
 moonfly-colors -> https://github.com/bluz71/vim-moonfly-colors
