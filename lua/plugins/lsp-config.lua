@@ -27,7 +27,7 @@ return {
       lspconfig.bashls.setup({capabilities = capabilities})
       lspconfig.cssls.setup({capabilities = capabilities})
       lspconfig.jsonls.setup({capabilities = capabilities})
-      lspconfig.tsserver.setup({capabilities = capabilities})
+      lspconfig.ts_ls.setup({capabilities = capabilities})
       lspconfig.remark_ls.setup({capabilities = capabilities})
       lspconfig.sqlls.setup({capabilities = capabilities})
 
