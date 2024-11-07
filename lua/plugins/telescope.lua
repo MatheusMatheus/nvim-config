@@ -1,27 +1,27 @@
 return {
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("telescope").setup({
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({}),
-          },
-        },
-      })
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<C-h>", builtin.find_files, {})
-      vim.keymap.set("n", "<Leader>fg", builtin.live_grep, {})
-      vim.keymap.set("n", "<Leader>bb", builtin.buffers, {})
-      vim.keymap.set("n", "<Leader><Leader>", builtin.oldfiles, {})
-      vim.keymap.set("n", "<Leader>fh", builtin.help_tags, {})
+	{
+		"nvim-telescope/telescope-ui-select.nvim",
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.8",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({}),
+					},
+				},
+			})
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "<C-h>", builtin.find_files, {})
+			vim.keymap.set("n", "<Leader>fg", builtin.live_grep, {})
+			vim.keymap.set("n", "<Leader>bb", builtin.buffers, {})
+			vim.keymap.set("n", "<Leader><Leader>", builtin.oldfiles, {})
+			vim.keymap.set("n", "<Leader>fh", builtin.help_tags, {})
 
-      require("telescope").load_extension("ui-select")
-    end,
-  },
+			require("telescope").load_extension("ui-select")
+		end,
+	},
 }
