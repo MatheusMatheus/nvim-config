@@ -2,9 +2,15 @@ return {
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -18,10 +24,10 @@ return {
 		lazy = false,
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local util = require("lspconfig/util")
 
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
-			lspconfig.jdtls.setup({ capabilities = capabilities })
 			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.angularls.setup({ capabilities = capabilities })
 			lspconfig.bashls.setup({ capabilities = capabilities })
@@ -30,7 +36,17 @@ return {
 			lspconfig.ts_ls.setup({ capabilities = capabilities })
 			lspconfig.remark_ls.setup({ capabilities = capabilities })
 			lspconfig.sqlls.setup({ capabilities = capabilities })
-			lspconfig.golangci_lint_ls.setup({ capabilities = capabilities })
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+				setting = {
+					gopls = {
+						completeUnimported = true,
+					},
+				},
+			})
 
 			local opts = {}
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)

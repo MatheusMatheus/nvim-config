@@ -6,7 +6,7 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.cmd("set autoindent")
 vim.g.mapleader = " "
--- vim.g.nightflyTransparent = true
+vim.g.nightflyTransparent = true
 
 -- Navigate vim panes better
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
