@@ -129,32 +129,35 @@ return {
         end,
     },
 
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     event = "InsertEnter",
-    --     config = function()
-    --         require "configs.copilot"
-    --     end,
-    -- },
-    --
-    -- {
-    --     "hrsh7th/nvim-cmp",
-    --     dependencies = {
-    --         {
-    --             config = function()
-    --                 require("copilot_cmp").setup()
-    --             end,
-    --         },
-    --     },
-    --     opts = {
-    --         sources = {
-    --             { name = "nvim_lsp", group_index = 2 },
-    --             { name = "copilot", group_index = 2 },
-    --             { name = "luasnip", group_index = 2 },
-    --             { name = "buffer", group_index = 2 },
-    --             { name = "nvim_lua", group_index = 2 },
-    --             { name = "path", group_index = 2 },
-    --         },
-    --     },
-    -- },
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        event = "VeryLazy",
+    },
+
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "mlaursen/vim-react-snippets",
+        },
+        --@param opts cmp.ConfigSchema
+        opts = function()
+            vim.api.nvim_set_hl(
+                0,
+                "CmpGhostText",
+                { link = "Comment", default = true }
+            )
+            require("vim-react-snippets").lazy_load()
+            -- local cmp = require "cmp"
+            local luasnip = require "luasnip"
+            luasnip.filetype_extend("typescriptreact", { "html" })
+            luasnip.filetype_extend("javascriptreact", { "html" })
+            require("luasnip/loaders/from_vscode").lazy_load()
+        end,
+    },
+    {
+        "mg979/vim-visual-multi",
+        event = "VeryLazy",
+    },
 }

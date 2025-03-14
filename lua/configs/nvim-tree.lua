@@ -15,6 +15,10 @@ local function on_attach(bufnr)
 end
 
 local options = {
+    update_focused_file = {
+        enable = true,
+    },
+
     sort = {
         sorter = "case_sensitive",
     },
@@ -23,9 +27,6 @@ local options = {
     },
     renderer = {
         group_empty = true,
-    },
-    filters = {
-        dotfiles = true,
     },
 }
 

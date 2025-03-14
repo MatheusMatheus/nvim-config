@@ -1,0 +1,94 @@
+-- local ls = require "luasnip"
+-- local s = ls.snippet
+-- local i = ls.insert_node
+-- local fmt = require("luasnip.extras.fmt").fmt
+--
+-- -- Define React Hook Snippets
+-- ls.add_snippets("typescriptreact", {
+--     -- useState
+--     s(
+--         "us",
+--         fmt(
+--             [[
+-- import {{ useState }} from 'react';
+--
+-- const [{}, {}] = useState<{}>({});]],
+--             {
+--                 i(1, "state"), -- State variable
+--                 i(2, "setState"), -- State setter
+--                 i(3, "Type"), -- Type for useState
+--                 i(4, "initialValue"), -- Initial value
+--             }
+--         )
+--     ),
+--
+--     -- useEffect
+--     s(
+--         "ue",
+--         fmt(
+--             [[
+-- import {{ useEffect }} from 'react';
+--
+-- useEffect(() => {{
+--   {}
+-- }}, [{}]);]],
+--             {
+--                 i(1, "// Effect logic"), -- Effect logic
+--                 i(2, ""), -- Dependencies
+--             }
+--         )
+--     ),
+--
+--     -- useCallback
+--     s(
+--         "uc",
+--         fmt(
+--             [[
+-- import {{ useCallback }} from 'react';
+--
+-- const {} = useCallback(({}) => {{
+--   {}
+-- }}, [{}]);]],
+--             {
+--                 i(1, "callbackName"), -- Callback name
+--                 i(2, "args"), -- Arguments
+--                 i(3, "// Callback logic"), -- Callback logic
+--                 i(4, ""), -- Dependencies
+--             }
+--         )
+--     ),
+--
+--     -- useMemo
+--     s(
+--         "um",
+--         fmt(
+--             [[
+-- import {{ useMemo }} from 'react';
+--
+-- const {} = useMemo(() => {{
+--   return {};
+-- }}, [{}]);]],
+--             {
+--                 i(1, "memoizedValue"), -- Memoized value name
+--                 i(2, "computeValue()"), -- Compute logic
+--                 i(3, ""), -- Dependencies
+--             }
+--         )
+--     ),
+--
+--     -- useRef
+--     s(
+--         "urf",
+--         fmt(
+--             [[
+-- import {{ useRef }} from 'react';
+--
+-- const {} = useRef<{}>({});]],
+--             {
+--                 i(1, "ref"), -- Ref name
+--                 i(2, "Type"), -- Ref type
+--                 i(3, "initialValue"), -- Initial value
+--             }
+--         )
+--     ),
+-- })

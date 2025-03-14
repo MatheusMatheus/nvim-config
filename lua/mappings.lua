@@ -32,7 +32,15 @@ map("n", "<C-X>", ":JavaRunnerRunMain<CR>", {})
 map("n", "<leader>sm", ":JavaRunnerStopMain<CR>", {})
 map("n", "<C-L>", ":JavaRunnerToggleLogs<CR>", {})
 
+-- nvim-java
+-- Build
+map("n", "<leader>wb", ":JavaBuildBuildWorkspace<CR>", {})
+
 --nvim-java
 -- Refactor
 map("n", "<leader>ct", ":JavaRefactorExtractConstant<CR>", {})
 map("n", "<leader>mt", ":JavaRefactorExtractMethod<CR>", {})
+
+--nvim-java
+-- Profiles
+map("n", "<C-P>", ":JavaProfile<CR>", {})

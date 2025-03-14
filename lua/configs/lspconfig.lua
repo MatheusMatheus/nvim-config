@@ -19,6 +19,7 @@ lspconfig.servers = {
     "sqlls",
     "lemminx",
     "gopls",
+    "tailwindcss",
 }
 
 -- list of servers configured with default config.
@@ -37,6 +38,14 @@ local default_servers = {
     "lemminx",
     "gopls",
 }
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or "single"
+    opts.max_width = opts.max_width or 80
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 -- lsps with default config
 for _, lsp in ipairs(default_servers) do
@@ -60,9 +69,6 @@ lspconfig.gopls.setup {
     root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
     settings = {
         gopls = {
-            analyses = {
-                unusedparams = true,
-            },
             completeUnimported = true,
             usePlaceholders = true,
             staticcheck = true,
@@ -114,7 +120,7 @@ lspconfig.angularls.setup {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-    filetypes = { "typescript", "html" },
+    filetypes = { "typescript", "html", "htmlangular" },
     cmd = cmd,
     on_new_config = function(new_config, new_root_dir)
         new_config.cmd = cmd
@@ -125,6 +131,45 @@ lspconfig.ts_ls.setup {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-    filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" },
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+    },
     cmd = { "typescript-language-server", "--stdio" },
+    opts = {
+
+        inlay_hints = { enabled = true },
+        root_dir = function(...)
+            return require("lspconfig.util").root_pattern ".git"(...)
+        end,
+        single_file_support = false,
+        settings = {
+            typescript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "literal",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = false,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                },
+            },
+            javascript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                },
+            },
+        },
+    },
 }

@@ -1,0 +1,117 @@
+-- local ls = require "luasnip"
+-- local s = ls.snippet
+-- local t = ls.text_node
+-- local i = ls.insert_node
+-- local fmt = require("luasnip.extras.fmt").fmt
+-- local d = ls.dynamic_node
+--
+-- -- Function to add or update React imports
+-- local function add_or_update_import(hooks)
+--     return d(1, function()
+--         local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+--         local import_line_index = nil
+--
+--         -- Find an existing import line for React
+--         for index, line in ipairs(lines) do
+--             if line:match "^import%s*{.*}.*from%s*['\"]react['\"]%s*;?" then
+--                 import_line_index = index
+--                 break
+--             end
+--         end
+--
+--         if import_line_index then
+--             -- Update existing import line
+--             local current_import_line = lines[import_line_index]
+--             local updated_import_line = current_import_line:gsub(
+--                 "{(.-)}",
+--                 function(imports)
+--                     for _, hook in ipairs(hooks) do
+--                         if not imports:match(hook) then
+--                             imports = imports .. ", " .. hook
+--                         end
+--                     end
+--                     return imports
+--                 end
+--             )
+--             lines[import_line_index] = updated_import_line
+--             vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+--         else
+--             -- Add a new import line
+--             vim.api.nvim_buf_set_lines(0, 0, 0, false, {
+--                 "import { " .. table.concat(hooks, ", ") .. " } from 'react';",
+--             })
+--         end
+--
+--         return t "" -- No dynamic replacement after import handling
+--     end)
+-- end
+--
+-- return {
+--     -- Snippet for useState
+--     s(
+--         "xxx",
+--         fmt(
+--             [[
+-- {import}
+-- const [{state}, set{State}] = useState({defaultValue});
+-- ]],
+--             {
+--                 import = add_or_update_import { "useState" },
+--                 state = i(1, "state"),
+--                 State = ls.function_node(function(args)
+--                     return args[1][1]:gsub("^%l", string.upper)
+--                 end, { 1 }),
+--                 defaultValue = i(2, "null"),
+--             }
+--         )
+--     ),
+--
+--     -- Snippet for useEffect
+--     s(
+--         "useeffect",
+--         fmt(
+--             [[
+-- {import}
+-- useEffect(() => {{
+--   {cursor}
+-- }}, [{deps}]);
+-- ]],
+--             {
+--                 import = add_or_update_import { "useEffect" },
+--                 cursor = i(1, "// side effect"),
+--                 deps = i(2, ""),
+--             }
+--         )
+--     ),
+--
+--     -- Snippet for custom hook
+--     s(
+--         "customhook",
+--         fmt(
+--             [[
+-- {import}
+-- export function use{HookName}() {{
+--   const [{state}, set{State}] = useState({defaultValue});
+--
+--   useEffect(() => {{
+--     {effectBody}
+--   }}, [{deps}]);
+--
+--   return {returnValue};
+-- }}
+-- ]],
+--             {
+--                 import = add_or_update_import { "useState", "useEffect" },
+--                 HookName = i(1, "CustomHook"),
+--                 state = i(2, "state"),
+--                 State = ls.function_node(function(args)
+--                     return args[1][1]:gsub("^%l", string.upper)
+--                 end, { 2 }),
+--                 defaultValue = i(3, "null"),
+--                 effectBody = i(4, "// effect logic"),
+--                 deps = i(5, ""),
+--                 returnValue = i(6, "state"),
+--             }
+--         )
+--     ),
+-- }

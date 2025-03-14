@@ -8,10 +8,6 @@ local options = {
     },
 
     formatters = {
-        -- Golang
-        ["goimports-reviser"] = {
-            prepend_args = { "-rm-unused" },
-        },
         golines = {
             prepend_args = { "--max-len=80" },
         },

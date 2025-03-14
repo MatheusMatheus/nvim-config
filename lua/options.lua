@@ -1,4 +1,4 @@
-require("nvchad.options")
+require "nvchad.options"
 
 local o = vim.o
 
@@ -11,3 +11,11 @@ o.softtabstop = 4
 
 -- set filetype for .CBL COBOL files.
 -- vim.cmd([[ au BufRead,BufNewFile *.CBL set filetype=cobol ]])
+o.relativenumber = true
+
+vim.diagnostic.config {
+    virtual_text = false,
+}
+
+o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

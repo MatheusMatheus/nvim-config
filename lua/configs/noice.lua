@@ -20,5 +20,14 @@ local options = {
         inc_rename = false,
         lsp_doc_border = true,
     },
+    commands = {
+        errors = {
+            -- options for the message history that you get with `:Noice`
+            view = "popup",
+            opts = { enter = true, format = "details" },
+            filter = { error = true },
+            filter_opts = { reverse = true },
+        },
+    },
 }
 require("noice").setup(options)

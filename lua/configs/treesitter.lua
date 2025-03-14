@@ -35,6 +35,7 @@ local options = {
         "sql",
         "yaml",
         "javascript",
+        "tsx",
         "typescript",
     },
 
@@ -44,6 +45,14 @@ local options = {
     },
 
     indent = { enable = true },
+    autotag = {
+        enable = true,
+    },
+    query_linter = {
+        enable = true,
+        use_virtual_test = true,
+        lint_events = { "BufWrite", "CursorHold" },
+    },
 }
 
 require("nvim-treesitter.configs").setup(options)
